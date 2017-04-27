@@ -1,0 +1,40 @@
+<md-card>
+    <md-card-header>
+        <md-icon md-card-avatar color="accent">account_box</md-icon>
+        <md-card-title>
+            <h3>{{user? 'Edit User' : 'Add User'}}</h3></md-card-title>
+    </md-card-header>
+    <md-card-content>
+        <!--     <form #form="ngForm" [formGroup]="userForm" novalidate class="user_edit_form" (ngSubmit)="save(userForm.value, userForm.valid)"> -->
+        <form [formGroup]="userForm" novalidate (ngSubmit)="save(userForm.value, userForm.valid)">
+
+            <md-input-container class="full-width">
+                <input mdInput type="email" placeholder="Email Address" autocomplete="off" formControlName="email" value="{{user && user.email? user.email : ''}}" name="email" />
+            </md-input-container>
+            <div [hidden]="userForm.controls.email.valid || (userForm.controls.email.pristine && !submitted)">
+                <div class="error">{{this.formErrors.email[0]}}</div>
+            </div>
+            <table class="full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="First name" formControlName="first_name" autocomplete="off" value="{{user && user.first_name? user.first_name: ''}}">
+                        </md-input-container>
+                        <div [hidden]="userForm.controls.first_name.valid || (userForm.controls.first_name.pristine && !submitted)">
+                            <div class="error">{{this.formErrors.first_name[0]}}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="Last Name" formControlName="last_name" autocomplete="off" value="{{user && user.last_name? user.last_name: ''}}">
+                        </md-input-container>
+                        <div [hidden]="userForm.controls.last_name.valid || (userForm.controls.last_name.pristine && !submitted)">
+                            <div class="error">{{this.formErrors.last_name[0]}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" md-raised-button color="accent"><md-icon>save</md-icon>{{user? 'Update' : 'Add'}}</button>
+        </form>
+    </md-card-content>
+</md-card>
