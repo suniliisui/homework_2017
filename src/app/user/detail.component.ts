@@ -22,22 +22,30 @@ export class UserDetailComponent implements OnInit {
   constructor(private userService: UserService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    // Fetching user form errors from service
     this.formErrors = this.userService.getUserformErrors();
+
     let id = +this.route.snapshot.params['id'];
+    // fetch user model from user service
     if(id){
       this.user = this.userService.getUser(id);
     }
+
+    // Creating form group
     this.userForm = this.formBuilder.group({
-      email: [this.user && this.user.email?this.user.email:'', [<any>Validators.required, <any>Validators.maxLength(5)]],
+      email: [this.user && this.user.email?this.user.email:'', [<any>Validators.required, <any>Validators.maxLength(50)]],
       first_name: [this.user && this.user.first_name?this.user.first_name:'', [<any>Validators.required, <any>Validators.maxLength(50)]],
       last_name: [this.user && this.user.last_name?this.user.last_name:'', [<any>Validators.required, <any>Validators.maxLength(50)]],
     });
   }
 
   save(model: User, isValid: boolean) {
-    debugger;
-    if (!isValid) {
+    if (model.id) {
+      // Call API to update user
        
+    }else {
+      // Call API to create user
+
     }
     console.log(model, isValid);
   }
