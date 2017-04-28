@@ -9,19 +9,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { LogoutComponent } from './account/logout.component';
 import { UserDetailComponent } from './user/detail.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import {UserService} from './user.service';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ {provide: APP_BASE_HREF, useValue: '/'} ],
+      providers: [ {provide: APP_BASE_HREF, useValue: '/'}, {provide: UserService, useClass: UserService} ],
       declarations: [
         AppComponent, DashboardComponent, UserInfoComponent, LogoutComponent, UserDetailComponent
       ],
-      imports: [ MaterialModule.forRoot(), AppRoutingModule ],
+      imports: [ MaterialModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule ],
     }).compileComponents();
   }));
 

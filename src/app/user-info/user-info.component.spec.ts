@@ -6,6 +6,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { LogoutComponent } from '../account/logout.component';
 import { UserDetailComponent } from '../user/detail.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserInfoComponent } from './user-info.component';
 
@@ -17,7 +18,7 @@ describe('UserInfoComponent', () => {
     TestBed.configureTestingModule({
       providers: [ {provide: APP_BASE_HREF, useValue: '/'} ],
       declarations: [ UserInfoComponent, DashboardComponent, LogoutComponent, UserDetailComponent ],
-      imports: [ MaterialModule.forRoot(), RouterModule, AppRoutingModule ]
+      imports: [ MaterialModule.forRoot(), RouterModule, AppRoutingModule, FormsModule, ReactiveFormsModule ]
     })
     .compileComponents();
   }));
